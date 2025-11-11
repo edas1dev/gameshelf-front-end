@@ -1,11 +1,49 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Shelf</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gameshelf</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>any</h1>
+  <header class="navbar">
+    <div class="logo"><a href="index.html">GAMESHELF</a></div>
+    <nav class="nav-links">
+      <a href="about.html">Sobre</a>
+      <div class="logo-icon">
+        <img src="gamepad-icon.svg" alt="Ícone Gamepad">
+      </div>
+      <a href="login.html">Login</a>
+      <a href="cadastro.html">Cadastro</a>
+    </nav>
+    <div class="menu-toggle" id="menu-toggle">☰</div>
+  </header>
+  <section class="banner">
+    <img src="img/hollowknight.jpg" alt="Banner de jogo">
+  </section>
+    <section class="hero">
+    <div class="hero-content">
+      <h1>A paixão por jogos se transforma em <span>avaliação e conexão</span>.</h1>
+      <p>Compartilhe suas opiniões, descubra novas experiências e veja quais títulos estão dominando o universo gamer.</p>
+      
+      <div class="hero-buttons">
+        <input type="email" placeholder="Digite seu e-mail">
+        <button class="btn-primary" onclick="window.location.href='cadastro.html'">Começar agora</button>
+        <button class="btn-secondary" onclick="window.location.href='avaliacoes.html'">Explorar Avaliações</button>
+
+      </div>
+    </div>
+    <div class="hero-bg"></div>
+  </section>
+
+ <footer>
+    <div class="footer-content">
+      <img src="img/image.png" alt="Logo Gameshelf" class="footer-logo">
+      <img src="img/logo-ifal.png" alt="Logo IFAL" class="footer-logo">
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
