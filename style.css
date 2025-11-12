@@ -16,6 +16,22 @@ body {
   color: #fff;
 }
 
+/* ===== ESTRUTURA DE PÁGINA ===== */
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1; /* Faz o conteúdo ocupar o espaço restante */
+}
+
+
 /* ===== NAVBAR ===== */
 .navbar {
   display: flex;
@@ -318,7 +334,7 @@ footer {
 
 /* ===== ABOUT SECTION ===== */
 .about {
-  background-color: #0c0c24;
+  background-color: #1d0b3a; /* nova cor de fundo */
   color: #fff;
   padding: 60px 30px;
 }
@@ -329,6 +345,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 72.5vh;
   gap: 50px;
 }
 
@@ -364,6 +381,7 @@ footer {
   box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
 }
 
+/* Responsividade */
 @media (max-width: 900px) {
   .about-container {
     flex-direction: column;
