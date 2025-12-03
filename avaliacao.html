@@ -3,77 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Avaliação de Jogos - Gameshelf</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>Avaliações - Gameshelf</title>
   <link rel="stylesheet" href="style.css">
+  <script defer src="avaliacoes.js"></script>
 </head>
 <body>
-
   <header class="navbar">
     <div class="logo"><a href="index.html">GAMESHELF</a></div>
     <nav class="nav-links">
       <a href="about.html">Sobre</a>
       <div class="logo-icon">
-        <img src="gamepad-icon.svg" alt="Ícone de controle">
+        <img src="gamepad-icon.svg" alt="Ícone Gamepad">
       </div>
+      <a href="login.html">Login</a>
+      <a href="cadastro.html">Cadastro</a>
     </nav>
     <div class="menu-toggle" id="menu-toggle">☰</div>
   </header>
 
+  <section class="avaliacoes-section">
+    <h2>Avaliações de Jogos</h2>
+    <p>Compartilhe sua opinião sobre seus jogos favoritos!</p>
 
-  <section class="avaliacao-section">
-    <div class="avaliacao-box">
-      <h2>ADICIONAR / EDITAR JOGO</h2>
-
-      <div class="avaliacao-content">
-
-        <div class="game-image">
-          <img src="hollowknight.jpg" alt="Capa do jogo">
-        </div>
-
-
-        <form class="avaliacao-form">
-          <div class="input-group">
-            <label for="titulo">TÍTULO</label>
-            <input type="text" id="titulo" placeholder="Ex: Hollow Knight" required>
-          </div>
-
-          <div class="input-group">
-            <label for="plataforma">PLATAFORMA</label>
-            <input type="text" id="plataforma" placeholder="Ex: Switch, PS5" required>
-          </div>
-
-          <div class="input-group">
-            <label for="genero">GÊNERO</label>
-            <input type="text" id="genero" placeholder="Ex: Metroidvania" required>
-          </div>
-
-          <div class="input-group">
-            <label for="nota">NOTA (1 A 5)</label>
-            <input type="number" id="nota" min="1" max="5" value="5" required>
-          </div>
-
-          <div class="input-group">
-            <label for="review">REVIEW</label>
-            <textarea id="review" rows="4" placeholder="escreva sua avaliação aqui" required></textarea>
-          </div>
-
-          <div class="button-group">
-            <button type="submit" class="btn-salvar">Salvar</button>
-            <button type="button" class="btn-cancelar">Cancelar</button>
-          </div>
-        </form>
+    <form id="form-avaliacao" class="avaliacao-form">
+      <div class="input-group">
+        <label for="nome-jogo">Nome do jogo</label>
+        <input type="text" id="nome-jogo" placeholder="Ex: Hollow Knight" required>
       </div>
+
+      <div class="input-group">
+        <label for="nota">Nota (0 a 10)</label>
+        <input type="number" id="nota" min="0" max="10" required>
+      </div>
+
+      <div class="input-group">
+        <label for="comentario">Comentário</label>
+        <textarea id="comentario" rows="4" placeholder="Digite aqui sua opinião..." required></textarea>
+      </div>
+
+      <button type="submit" class="btn-primary">Enviar Avaliação</button>
+    </form>
+
+    <div class="lista-avaliacoes" id="lista-avaliacoes">
+      <h3>Últimas avaliações</h3>
+      <div id="avaliacoes-container"></div>
     </div>
   </section>
 
   <footer>
     <div class="footer-content">
-      <img src="gameshelf-logo.png" alt="Logo Gameshelf" class="footer-logo">
-      <img src="ifal-logo.png" alt="Logo IFAL" class="footer-logo">
+      <img src="img/image.png" alt="Logo Gameshelf" class="footer-logo">
+      <img src="img/logo-ifal.png" alt="Logo IFAL" class="footer-logo">
     </div>
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
