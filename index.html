@@ -10,7 +10,6 @@
   <header class="navbar">
     <div class="logo"><a href="index.html">GAMESHELF</a></div>
     <nav class="nav-links">
-      <a href="about.html">Sobre</a>
       <div class="logo-icon">
         <img src="gamepad-icon.svg" alt="Ícone Gamepad">
       </div>
@@ -19,25 +18,42 @@
     </nav>
     <div class="menu-toggle" id="menu-toggle">☰</div>
   </header>
+
   <section class="banner">
     <img src="img/hollowknight.jpg" alt="Banner de jogo">
   </section>
-    <section class="hero">
+
+  <section class="hero">
     <div class="hero-content">
       <h1>A paixão por jogos se transforma em <span>avaliação e conexão</span>.</h1>
       <p>Compartilhe suas opiniões, descubra novas experiências e veja quais títulos estão dominando o universo gamer.</p>
-      
-      <div class="hero-buttons">
-        <input type="email" placeholder="Digite seu e-mail">
-        <button class="btn-primary" onclick="window.location.href='cadastro.html'">Começar agora</button>
-        <button class="btn-secondary" onclick="window.location.href='avaliacoes.html'">Explorar Avaliações</button>
 
+      <div class="hero-buttons">
+        <input type="email" id="emailInput" placeholder="Digite seu e-mail">
+        <button class="btn-primary" onclick="entrarComEmail()">Entrar</button>
+        <button class="btn-secondary" onclick="window.location.href='cadastro.html'">Cadastre-se agora</button>
       </div>
     </div>
     <div class="hero-bg"></div>
   </section>
 
- <footer>
+  <section class="about">
+    <div class="about-container">
+      <div class="about-text">
+        <h2>Sobre o Projeto</h2>
+        <p>O <strong>Gameshelf</strong> nasceu da ideia de unir a paixão por jogos eletrônicos com a curiosidade tecnológica de estudantes do <strong>Instituto Federal de Alagoas</strong>.
+        A proposta é criar uma plataforma simples e divertida para que jogadores possam compartilhar suas experiências, avaliar títulos e descobrir novas aventuras.</p>
+
+        <p>O projeto Front-End foi desenvolvido com <strong>HTML, CSS e JavaScript puro</strong>, focando na praticidade e na interação direta com o navegador, sem necessidade de cadastros 
+          ou bancos de dados externos. Assim, cada jogador mantém suas informações com segurança e facilidade.</p>
+      </div>
+      <div class="about-image">
+        <img src="img/game.jpg" alt="Ilustração de jogos">
+      </div>
+    </div>
+  </section>
+
+  <footer>
     <div class="footer-content">
       <img src="img/image.png" alt="Logo Gameshelf" class="footer-logo">
       <img src="img/logo-ifal.png" alt="Logo IFAL" class="footer-logo">
@@ -45,5 +61,6 @@
   </footer>
 
   <script src="script.js"></script>
+
 </body>
 </html>
