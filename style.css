@@ -16,22 +16,6 @@ body {
   color: #fff;
 }
 
-/* ===== ESTRUTURA DE PÁGINA ===== */
-html, body {
-  height: 100%;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-main {
-  flex: 1; /* Faz o conteúdo ocupar o espaço restante */
-}
-
-
 /* ===== NAVBAR ===== */
 .navbar {
   display: flex;
@@ -334,9 +318,10 @@ footer {
 
 /* ===== ABOUT SECTION ===== */
 .about {
-  background-color: #1d0b3a; /* nova cor de fundo */
+  background-color: #0c0c24;
   color: #fff;
   padding: 60px 30px;
+  background: radial-gradient(circle at 70% 50%, rgba(123, 47, 247, 0.3), transparent 70%);
 }
 
 .about-container {
@@ -345,7 +330,6 @@ footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 72.5vh;
   gap: 50px;
 }
 
@@ -381,7 +365,6 @@ footer {
   box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
 }
 
-/* Responsividade */
 @media (max-width: 900px) {
   .about-container {
     flex-direction: column;
@@ -431,4 +414,83 @@ footer {
   .hero-buttons input {
     width: 100%;
   }
+}
+
+/* ===== AVALIAÇÕES ===== */
+.avaliacoes-section {
+  background: #0c0c24;
+  color: #fff;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.avaliacoes-section h2 {
+  color: #a679ff;
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.avaliacoes-section p {
+  color: #ccc;
+  margin-bottom: 30px;
+}
+
+.avaliacao-form {
+  background: #151530;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 600px;
+  margin: 0 auto 40px;
+  box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
+  text-align: left;
+}
+
+.avaliacao-form .input-group {
+  margin-bottom: 20px;
+}
+
+.avaliacao-form textarea {
+  width: 100%;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  padding: 10px;
+  background: #0c0c24;
+  color: white;
+  font-size: 1em;
+  resize: none;
+  border: 1px solid #29294d;
+}
+
+.lista-avaliacoes {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.lista-avaliacoes h3 {
+  color: #a679ff;
+  margin-bottom: 20px;
+}
+
+.avaliacao-card {
+  background: #1b1b3b;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  box-shadow: 0 0 15px rgba(138, 43, 226, 0.2);
+}
+
+.avaliacao-card h4 {
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+.avaliacao-card p {
+  color: #d0d0ff;
+  margin-bottom: 5px;
+}
+
+.avaliacao-card .btn-secondary {
+  margin-top: 10px;
 }
