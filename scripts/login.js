@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 alert("Login realizado com sucesso!");
 
                 // 2. Redireciona para a página de perfil ou catálogo
-                window.location.href = "jogos.html"; 
+                window.location.href = "catalogo.html"; 
                 
             } catch (error) {
                 console.error('Erro de rede ou na requisição:', error);

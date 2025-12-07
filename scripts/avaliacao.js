@@ -16,7 +16,7 @@ async function fetchAndRenderJogos() {
         }
 
         const games = await response.json();
-        
+
         let optionsHtml = '<option value="" disabled selected>Selecione um jogo...</option>';
         
         games.forEach(game => {
@@ -34,13 +34,13 @@ async function fetchAndRenderJogos() {
 // Função para postar a nova review
 async function handlePostReview({ game_id, rating, content, title }) {
     try {
-        const response = await fetch(`${API_URL}/reviews`, { 
+        const response = await fetch(`${API_URL}/reviews/`, { 
             method: "POST",
             headers: { 
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${getToken()}` 
             },
-            body: JSON.stringify({ game_id, rating, content, title }),
+            body: JSON.stringify({ gameId: String(game_id), rating, content, title }),
         });
 
         if (!response.ok) {
@@ -50,7 +50,7 @@ async function handlePostReview({ game_id, rating, content, title }) {
 
         alert("Avaliação enviada com sucesso!");
         formAvaliacao.reset();
-        await fetchAndRenderMinhasReviews(); // Recarrega a lista
+        await fetchAndRenderMinhasReviews();
         
     } catch (error) {
         alert("Erro ao Enviar Avaliação: " + error.message);
@@ -91,14 +91,13 @@ function renderMinhasReviews(reviews) {
     reviews.forEach(review => {
         const card = document.createElement("div");
         card.classList.add("avaliacao-card");
-        
-        const gameTitle = review.game ? review.game.title : `Jogo ID: ${review.game_id}`;
-        
+
+        const gameTitle = review.game ? review.game.title : `Jogo ID: ${review.gameId}`;
         card.innerHTML = `
             <h4>${gameTitle}</h4>
             <p><strong>Nota:</strong> ${review.rating}/10</p>
             <p>${review.content}</p>
-            <small>Título da Review: ${review.title}</small>
+            <small>Jogo avaliado: ${review.title}</small>
         `;
         listaAvaliacoesContainer.appendChild(card);
     });
@@ -117,9 +116,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             const game_id = parseInt(selectJogo.value);
             const rating = parseFloat(document.getElementById("nota").value);
             const content = document.getElementById("comentario").value.trim();
-            
-            // Gerando um título simples para satisfazer o requisito da API
-            const title = `Avaliação de ${selectJogo.selectedOptions[0].text}`; 
+            const title = `${selectJogo.selectedOptions[0].text}`; 
 
             if (!game_id) {
                 alert("Selecione um jogo válido!");

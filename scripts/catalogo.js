@@ -33,7 +33,7 @@ function renderGames(games) {
         const card = document.createElement("div");
         card.classList.add("game-card");
         const imageUrl = game.backgroundImage || '';
-        const rating = game.rating ? `${game.rating} / 5` : 'N/A';
+        const rating = game.gameData?.rating ? `${game.gameData.rating} / 5` : 'N/A';
         
         card.innerHTML = `
             <div class="game-image-container">

@@ -94,15 +94,14 @@ function renderUserReviews(reviews) {
     reviews.forEach(review => {
         const card = document.createElement("div");
         card.classList.add("review-card");
-        
-        // Assumindo que a review do backend inclui o objeto do jogo (review.game)
-        // Se o seu BE não incluir o objeto 'game', use apenas o gameId como fallback.
+
         const gameTitle = review.game ? review.game.title : `Jogo ID: ${review.gameId}`;
         
         card.innerHTML = `
             <h4>${gameTitle}</h4>
             <p><strong>Nota:</strong> ${review.rating}/10</p>
             <p>${review.content}</p>
+            <small>Jogo avaliado: ${review.title}</small>
         `;
         reviewsContainer.appendChild(card);
     });
