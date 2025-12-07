@@ -1,8 +1,7 @@
 function entrarComEmail() {
   const emailInput = document.getElementById("emailInput");
   const email = emailInput ? emailInput.value.trim() : '';
-  
-  // redireciona para a página de login com o e-mail pré-preenchido
+
   if (email) {
     window.location.href = `login.html?email=${encodeURIComponent(email)}`;
   } else {
@@ -10,7 +9,6 @@ function entrarComEmail() {
   }
 }
 
-// Expõe a função para ser usada pelo atributo onclick no HTML
 window.entrarComEmail = entrarComEmail; 
 
 document.addEventListener("DOMContentLoaded", () => {

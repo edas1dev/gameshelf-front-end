@@ -1,47 +1,53 @@
 import { API_URL, saveToken } from './utils.js';
 
-const formLogin = document.querySelector(".login-form");
-
-async function handleLogin(email, password) {
-    try {
-        const response = await fetch(`${API_URL}/auth/login`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, password }),
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.message || "Credenciais inválidas. Tente novamente.");
-        }
-
-        const data = await response.json();
-        saveToken(data.access_token); 
-        
-        alert("Login realizado com sucesso!");
-        window.location.href = "jogos.html";
-
-    } catch (error) {
-        alert("Erro no Login: " + error.message);
-    }
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    const params = new URLSearchParams(window.location.search);
-    const emailFromIndex = params.get('email');
+document.addEventListener("DOMContentLoaded", function () {
+    const formLogin = document.querySelector(".login-form");
     const emailInput = document.getElementById("email");
-    if (emailFromIndex && emailInput) {
-        emailInput.value = emailFromIndex;
+    const passwordInput = document.getElementById("password");
+
+    // Preenche o email se ele veio da página inicial
+    const urlParams = new URLSearchParams(window.location.search);
+    const prefilledEmail = urlParams.get('email');
+    if (prefilledEmail && emailInput) {
+        emailInput.value = prefilledEmail;
     }
 
     if (formLogin) {
-        formLogin.addEventListener("submit", async (e) => {
+        formLogin.addEventListener("submit", async function (e) {
             e.preventDefault();
-            
-            const email = document.getElementById("email").value.trim();
-            const password = document.getElementById("password").value.trim();
 
-            await handleLogin(email, password);
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            try {
+                const response = await fetch(`${API_URL}/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password }),
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    // Geralmente 401 Unauthorized ou 400 Bad Request
+                    const errorMessage = data.message || "E-mail ou senha inválidos.";
+                    alert(`Falha no Login: ${errorMessage}`);
+                    return;
+                }
+
+                // 1. Salva o token (a resposta deve conter { access_token: "..." })
+                saveToken(data.access_token);
+                alert("Login realizado com sucesso!");
+
+                // 2. Redireciona para a página de perfil ou catálogo
+                window.location.href = "jogos.html"; 
+                
+            } catch (error) {
+                console.error('Erro de rede ou na requisição:', error);
+                alert("Erro ao conectar com o servidor. Tente novamente.");
+            }
         });
     }
 });

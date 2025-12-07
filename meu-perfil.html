@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Perfil - Gameshelf</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/meu-perfil.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo"><a href="jogos.html">GAMESHELF</a></div>
+    <nav class="nav-links">
+      <a href="jogos.html">Catálogo</a>
+      <a href="avaliacao.html">Fazer Avaliação</a>
+      <a href="meu-perfil.html" class="active">Meu Perfil</a>
+      <a href="#" onclick="logout()">Sair</a>
+    </nav>
+    <div class="menu-toggle" id="menu-toggle">☰</div>
+  </header>
+
+  <section class="perfil-section">
+    <div class="perfil-container">
+      <h2><span id="user-name-title">Carregando Perfil...</span></h2>
+      <hr>
+
+      <div class="user-info" id="user-info-display">
+        <h3>Detalhes da Conta</h3>
+        <p><strong>Nome:</strong> <span id="info-name">...</span></p>
+        <p><strong>Email:</strong> <span id="info-email">...</span></p>
+      </div>
+
+      <div class="update-form">
+        <h3>Atualizar Dados</h3>
+        <form id="update-user-form">
+          <div class="input-group">
+            <label for="update-name">Novo Nome</label>
+            <input type="text" id="update-name" placeholder="Deixe em branco para não alterar">
+          </div>
+          <div class="input-group">
+            <label for="update-password">Nova Senha</label>
+            <input type="password" id="update-password" placeholder="Mínimo 8 caracteres (Deixe em branco para não alterar)">
+          </div>
+          <button type="submit" class="btn-primary">Atualizar Perfil</button>
+        </form>
+      </div>
+
+      <div class="review-list">
+        <h3>Minhas Avaliações</h3>
+        <div id="reviews-container">
+          <p>Carregando avaliações...</p>
+        </div>
+      </div>
+
+      <div class="delete-section">
+        <h3>⚠️ Deletar Conta</h3>
+        <p>Esta ação é irreversível e deletará todas as suas avaliações e dados.</p>
+        <button id="delete-account-btn" class="btn-danger">Deletar Minha Conta</button>
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src="/scripts/utils.js"></script>
+  <script type="module" src="/scripts/perfil.js"></script>
+</body>
+</html>

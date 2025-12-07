@@ -55,10 +55,6 @@ body {
   transition: 0.3s;
 }
 
-.logo-icon img {
-  width: 38px;
-}
-
 .menu-toggle {
   display: none;
   font-size: 26px;

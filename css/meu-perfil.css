@@ -1,0 +1,89 @@
+.perfil-section {
+    background: #0c0c24;
+    color: #fff;
+    padding: 60px 20px;
+    min-height: 80vh;
+}
+
+.perfil-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #151530;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
+}
+
+.user-info h3,
+.user-info p {
+    margin: 10px 0;
+}
+
+.review-list h3 {
+    margin-top: 30px;
+    border-bottom: 2px solid #a679ff;
+    padding-bottom: 10px;
+}
+
+.review-card {
+    background: #2b2b4b;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.review-card h4 {
+    color: #00d2ff;
+    margin-top: 0;
+}
+
+.update-form {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+}
+
+.update-form h3 {
+    color: #a679ff;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #ccc;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #0c0c24;
+    color: #fff;
+}
+
+.delete-section {
+    margin-top: 40px;
+    padding: 20px;
+    border-radius: 10px;
+    background: #301515;
+    border: 1px solid #ff4b4b;
+}
+
+.btn-danger {
+    background: #ff4b4b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-danger:hover {
+    background: #cc0000;
+}

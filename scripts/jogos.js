@@ -32,8 +32,8 @@ function renderGames(games) {
     games.forEach(game => {
         const card = document.createElement("div");
         card.classList.add("game-card");
-        const imageUrl = game.gameData?.background_image || 'caminho/para/imagem-padrao.png';
-        const rating = game.gameData?.rating ? `${game.gameData.rating} / 5` : 'N/A';
+        const imageUrl = game.backgroundImage || '';
+        const rating = game.rating ? `${game.rating} / 5` : 'N/A';
         
         card.innerHTML = `
             <div class="game-image-container">
@@ -42,19 +42,15 @@ function renderGames(games) {
             <div class="game-info">
                 <h3>${game.title}</h3>
                 <p class="game-rating">⭐ Nota: <strong>${rating}</strong></p>
-                <p><small>ID Interno: ${game.id}</small></p>
-                <a href="detalhes.html?gameId=${game.apiId}" class="btn-primary-small">Ver Detalhes</a>
+                <a href="detalhes.html?gameId=${game.id}" class="btn-primary-small">Ver Detalhes</a>
             </div>
         `;
         gamesListContainer.appendChild(card);
     });
 }
 
-// Expõe a função logout para ser usada no link "Sair" do jogos.html
 window.logout = logout;
 
 document.addEventListener("DOMContentLoaded", () => {
-    // A página jogos.html não é necessariamente protegida (pode ser pública),
-    // mas garantimos que as funções essenciais sejam chamadas.
     fetchAndRenderGames();
 });
