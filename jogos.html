@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo de Jogos - Gameshelf</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/jogos.css">
+</head>
+
+<body>
+  <header class="navbar">
+    <div class="logo"><a href="index.html">GAMESHELF</a></div>
+    <nav class="nav-links">
+      <a href="avaliacao.html">Minhas Avaliações</a>
+      <a href="#" onclick="logout()">Sair</a>
+    </nav>
+  </header>
+
+  <section class="hero" style="height: 30vh; min-height: 200px;">
+    <div class="hero-content">
+      <h1>Catálogo de Jogos</h1>
+    </div>
+  </section>
+
+  <div id="games-list" class="games-grid">
+    <p style="color:white">Carregando catálogo...</p>
+  </div>
+
+  <script type="module" src="/scripts/jogos.js"></script>
+  <script type="module" src="/scripts/utils.js"></script>
+</body>
+</html>

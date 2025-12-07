@@ -1,127 +1,284 @@
-//botei isso pra verificar o email no login na parte inicial
-function entrarComEmail() {
-  const email = document.getElementById("emailInput").value.trim();
+const API_URL = "http://localhost:3000"; 
 
-  const EMAIL_FIXO = "admin@teste.com";
+function getToken() {
+  return localStorage.getItem("access_token");
+}
 
-  if (email === "") {
-    alert("Por favor, insira seu e-mail.");
-    return;
+function saveToken(token) {
+  localStorage.setItem("access_token", token);
+}
+
+function logout() {
+  localStorage.removeItem("access_token");
+  localStorage.removeItem("user_data");
+  window.location.href = "index.html";
+}
+
+function checkAuth() {
+  // Redireciona para o login se não houver token.
+  if (!getToken()) {
+    // window.location.href = "login.html";
+    // É melhor deixar isso no 'DOMContentLoaded' para não atrapalhar o login/cadastro
+    return false;
   }
+  return true;
+}
 
-  if (email.toLowerCase() === EMAIL_FIXO.toLowerCase()) {
-    window.location.href = "avaliacao.html";
+/* ==========================================================================
+   LÓGICA DA PÁGINA INICIAL (index.html)
+   ========================================================================== */
+function entrarComEmail() {
+  const emailInput = document.getElementById("emailInput");
+  const email = emailInput ? emailInput.value.trim() : '';
+  
+  // Apenas redireciona para a página de login, onde a autenticação real acontecerá
+  if (email) {
+    window.location.href = `login.html?email=${encodeURIComponent(email)}`;
   } else {
-    alert("Este e-mail é inválido!");
+    window.location.href = "login.html";
   }
 }
 
-// botei isso pra validar o login na parte de login
-const EMAIL_FIXO = "admin@teste.com";
-const SENHA_FIXA = "12345";
+/* ==========================================================================
+   LÓGICA DE CADASTRO (cadastro.html)
+   ========================================================================== */
+// Elementos da tela de Cadastro
+const formCadastro = document.querySelector(".cadastro-form");
+const cadastroButton = document.querySelector(".cadastro-button");
 
-document.addEventListener("DOMContentLoaded", function () {
-  const formLogin = document.querySelector(".login-form");
+if (formCadastro) {
+    formCadastro.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+        const confirmSenha = document.getElementById("confirm-password").value.trim();
+        
+        if (password !== confirmSenha) {
+            alert("As senhas não coincidem!");
+            return;
+        }
 
-  if (formLogin) {
-    formLogin.addEventListener("submit", function (e) {
-      e.preventDefault();
+        await handleCadastro(name, email, password);
+    });
+}
 
-      const emailDigitado = document.getElementById("email").value.trim();
-      const senhaDigitada = document.getElementById("password").value.trim();
+async function handleCadastro(name, email, password) {
+    try {
+        // Rota conforme user.gameshelf.http
+        const response = await fetch(`${API_URL}/users`, { 
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, email, password }),
+        });
 
-      const EMAIL_FIXO = "admin@teste.com"; 
-      const SENHA_FIXA = "12345";
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || "Erro ao cadastrar usuário");
+        }
 
-      if (
-        emailDigitado.toLowerCase() === EMAIL_FIXO.toLowerCase() &&
-        senhaDigitada === SENHA_FIXA
-      ) {
+        alert("Cadastro realizado com sucesso! Faça login.");
+        window.location.href = "login.html";
+
+    } catch (error) {
+        alert("Erro no Cadastro: " + error.message);
+    }
+}
+
+cadastroButton.addEventListener("click", () => {
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const confirmSenha = document.getElementById("confirm-password").value.trim();
+  handleCadastro(name, email, password);
+});
+
+/* ==========================================================================
+   LÓGICA DE LOGIN (login.html)
+   ========================================================================== */
+const formLogin = document.querySelector(".login-form");
+const loginButton = document.querySelector(".login-button");
+
+if (formLogin) {
+    formLogin.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        await handleLogin(email, password);
+    });
+}
+
+async function handleLogin(email, password) {
+    try {
+        // Rota conforme user.gameshelf.http / auth/login
+        const response = await fetch(`${API_URL}/auth/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password }),
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || "Credenciais inválidas");
+        }
+
+        const data = await response.json();
+        saveToken(data.access_token); // Salva o token
+        
+        // Redireciona para a tela de avaliações após o login
         window.location.href = "avaliacao.html";
-      } else {
-        alert("E-mail ou senha incorretos!");
-      }
-    });
-  }
-});
 
-//botei isso pra validar o cadastro na parte de cadastro
-document.addEventListener("DOMContentLoaded", function () {
-  const formCadastro = document.querySelector(".cadastro-form");
-
-  if (formCadastro) {
-    formCadastro.addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const nome = document.getElementById("name").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const senha = document.getElementById("password").value.trim();
-      const confirmSenha = document.getElementById("confirm-password").value.trim();
-
-      if (!nome || !email || !senha || !confirmSenha) {
-        alert("Preencha todos os campos!");
-        return;
-      }
-      if (senha !== confirmSenha) {
-        alert("As senhas não coincidem!");
-        return;
-      }
-      
-      const usuario = { nome, email, senha };
-      localStorage.setItem("usuarioCadastrado", JSON.stringify(usuario));
-
-      alert("Cadastro realizado com sucesso!");
-
-      window.location.href = "avaliacao.html";
-    });
-  }
-});
-
-
-//botei isso pra salvar as avaliacoes no local storage
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("form-avaliacao");
-  const lista = document.getElementById("avaliacoes-container");
-
-  const avaliacoes = JSON.parse(localStorage.getItem("avaliacoes")) || [];
-
-  function renderizarAvaliacoes() {
-    lista.innerHTML = "";
-    avaliacoes.forEach((a, index) => {
-      const card = document.createElement("div");
-      card.classList.add("avaliacao-card");
-      card.innerHTML = `
-        <h4>${a.jogo}</h4>
-        <p><strong>Nota:</strong> ${a.nota}/10</p>
-        <p>${a.comentario}</p>
-        <button class="btn-secondary remover" data-index="${index}">Remover</button>
-      `;
-      lista.appendChild(card);
-    });
-  }
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const jogo = document.getElementById("nome-jogo").value.trim();
-    const nota = document.getElementById("nota").value;
-    const comentario = document.getElementById("comentario").value.trim();
-
-    if (jogo && nota && comentario) {
-      avaliacoes.push({ jogo, nota, comentario });
-      localStorage.setItem("avaliacoes", JSON.stringify(avaliacoes));
-      renderizarAvaliacoes();
-      form.reset();
+    } catch (error) {
+        alert("Erro no Login: " + error.message);
     }
-  });
+}
 
-  lista.addEventListener("click", (e) => {
-    if (e.target.classList.contains("remover")) {
-      const index = e.target.getAttribute("data-index");
-      avaliacoes.splice(index, 1);
-      localStorage.setItem("avaliacoes", JSON.stringify(avaliacoes));
-      renderizarAvaliacoes();
-    }
-  });
-
-  renderizarAvaliacoes();
+loginButton.addEventListener("click", () => {
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+  handleLogin(email, password);
 });
+
+/* ==========================================================================
+   LÓGICA DE AVALIAÇÕES (avaliacao.html)
+   ========================================================================== */
+const formAvaliacao = document.getElementById("form-avaliacao");
+const listaAvaliacoesContainer = document.getElementById("avaliacoes-container");
+const selectJogo = document.getElementById("select-jogo");
+
+if (formAvaliacao) {
+    // 1. Verifica se está logado e carrega dados ao entrar na página
+    document.addEventListener("DOMContentLoaded", () => {
+        if (checkAuth()) {
+            fetchAndRenderJogos();
+            fetchAndRenderMinhasReviews();
+        }
+    });
+
+    // 2. Evento de submissão do formulário de avaliação
+    formAvaliacao.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        
+        const game_id = parseInt(selectJogo.value);
+        const rating = parseFloat(document.getElementById("nota").value);
+        const content = document.getElementById("comentario").value.trim();
+        
+        // Criando um título simples, já que a API o exige:
+        const title = `Avaliação de ${selectJogo.selectedOptions[0].text}`; 
+
+        if (!game_id) {
+            alert("Selecione um jogo válido!");
+            return;
+        }
+
+        await handlePostReview({ game_id, rating, content, title });
+    });
+}
+
+// Função para buscar e renderizar a lista de jogos no select
+async function fetchAndRenderJogos() {
+    try {
+        selectJogo.innerHTML = '<option value="" disabled selected>Carregando jogos...</option>';
+        
+        // Rota conforme game.gameshelf.http
+        const response = await fetch(`${API_URL}/games`); 
+        
+        if (!response.ok) {
+            throw new Error("Erro ao carregar o catálogo de jogos.");
+        }
+
+        const games = await response.json();
+        
+        let optionsHtml = '<option value="" disabled selected>Selecione um jogo...</option>';
+        
+        games.forEach(game => {
+            // Assumindo que a API retorna 'id' e 'title'
+            optionsHtml += `<option value="${game.id}">${game.title}</option>`; 
+        });
+        
+        selectJogo.innerHTML = optionsHtml;
+
+    } catch (error) {
+        selectJogo.innerHTML = '<option value="" disabled selected>Erro ao carregar</option>';
+        console.error("Erro ao carregar jogos:", error.message);
+    }
+}
+
+// Função para postar a nova review
+async function handlePostReview({ game_id, rating, content, title }) {
+    try {
+        // Rota conforme review.gameshelf.http
+        const response = await fetch(`${API_URL}/reviews`, { 
+            method: "POST",
+            headers: { 
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${getToken()}` // Envia o Token JWT
+            },
+            body: JSON.stringify({ game_id, rating, content, title }),
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || "Falha ao criar avaliação");
+        }
+
+        alert("Avaliação enviada com sucesso!");
+        formAvaliacao.reset();
+        fetchAndRenderMinhasReviews(); // Recarrega a lista
+        
+    } catch (error) {
+        alert("Erro ao Enviar Avaliação: " + error.message);
+    }
+}
+
+// Função para buscar e renderizar as reviews do usuário
+async function fetchAndRenderMinhasReviews() {
+    listaAvaliacoesContainer.innerHTML = '<h4>Carregando suas avaliações...</h4>';
+    try {
+        // Rota conforme review.gameshelf.http
+        const response = await fetch(`${API_URL}/reviews/me`, {
+            headers: { "Authorization": `Bearer ${getToken()}` } // Protegida com Token
+        });
+
+        if (!response.ok) {
+            throw new Error("Não foi possível carregar as avaliações.");
+        }
+        
+        const reviews = await response.json();
+        renderMinhasReviews(reviews);
+
+    } catch (error) {
+        listaAvaliacoesContainer.innerHTML = `<p>Erro: ${error.message}</p>`;
+    }
+}
+
+// Função para renderizar os cards de avaliação na tela
+function renderMinhasReviews(reviews) {
+    if (!listaAvaliacoesContainer) return;
+    
+    listaAvaliacoesContainer.innerHTML = "";
+
+    if (reviews.length === 0) {
+        listaAvaliacoesContainer.innerHTML = "<p>Você ainda não fez nenhuma avaliação.</p>";
+        return;
+    }
+
+    reviews.forEach(review => {
+        const card = document.createElement("div");
+        card.classList.add("avaliacao-card");
+        
+        // Assumindo que a review do backend inclui o objeto do jogo (review.game)
+        const gameTitle = review.game ? review.game.title : `Jogo ID: ${review.game_id}`;
+        
+        card.innerHTML = `
+            <h4>${gameTitle}</h4>
+            <p><strong>Nota:</strong> ${review.rating}/10</p>
+            <p>${review.content}</p>
+            <small>Título da Review: ${review.title}</small>
+        `;
+        listaAvaliacoesContainer.appendChild(card);
+    });
+}

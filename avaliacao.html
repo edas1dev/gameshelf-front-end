@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Avaliações - Gameshelf</title>
-  <link rel="stylesheet" href="style.css">
-  <script defer src="script.js"></script>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
   <header class="navbar">
@@ -26,8 +25,12 @@
 
     <form id="form-avaliacao" class="avaliacao-form">
       <div class="input-group">
-        <label for="nome-jogo">Nome do jogo</label>
-        <input type="text" id="nome-jogo" placeholder="Ex: Hollow Knight" required>
+        <label for="select-jogo">Selecione o Jogo</label>
+        <div class="select-wrapper">
+          <select id="select-jogo" required>
+            <option value="" disabled selected>Carregando jogos...</option>
+          </select>
+        </div>
       </div>
 
       <div class="input-group">
@@ -55,5 +58,8 @@
       <img src="img/logo-ifal.png" alt="Logo IFAL" class="footer-logo">
     </div>
   </footer>
+
+  <script type="module" src="/scripts/utils.js"></script>
+  <script type="module" defer src="/scripts/avaliacao.js"></script>
 </body>
 </html>

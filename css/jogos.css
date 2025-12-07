@@ -1,0 +1,126 @@
+/* --- Configuração do GRID (5 colunas) --- */
+.games-grid {
+    /* Usando CSS Grid para criar 5 colunas responsivas */
+    display: grid;
+    /* auto-fit garante que as colunas se ajustem */
+    /* minmax(200px, 1fr) garante um tamanho mínimo de 200px por coluna */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px; /* Espaço entre os cards */
+    padding: 40px 10%;
+    /* Mínimo de padding para telas pequenas */
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* --- Estilo do Card Individual --- */
+.game-card {
+    background: #1e1e40; /* Roxo escuro */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+    height: 100%; /* Garante que todos os cards na mesma linha tenham a mesma altura */
+    display: flex;
+    flex-direction: column; /* Organiza conteúdo verticalmente */
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(138, 43, 226, 0.6); /* Sombra roxa mais destacada */
+}
+
+/* --- Estilo da Imagem / Background --- */
+.game-image-container {
+    height: 160px; /* Altura da imagem do card */
+    overflow: hidden;
+    border-bottom: 2px solid rgba(0, 210, 255, 0.5); /* Linha divisória */
+}
+
+.game-image {
+    width: 100%;
+    height: 100%;
+    /* Garante que a imagem preencha o container sem distorcer e recorte o excesso */
+    object-fit: cover; 
+    transition: transform 0.5s ease;
+}
+
+.game-card:hover .game-image {
+    transform: scale(1.05); /* Efeito de zoom sutil ao passar o mouse */
+}
+
+/* --- Estilo das Informações do Jogo --- */
+.game-info {
+    padding: 15px;
+    flex-grow: 1; /* Permite que este bloco ocupe o espaço restante */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Empurra o botão para baixo */
+}
+
+.game-info h3 {
+    color: #00d2ff; /* Azul Neon */
+    font-size: 1.1em;
+    margin-top: 0;
+    margin-bottom: 5px;
+    line-height: 1.3;
+}
+
+.game-rating {
+    margin: 5px 0 15px;
+    font-size: 1em;
+    color: #ffcc00; /* Amarelo para nota */
+    font-weight: 600;
+}
+
+.game-info p small {
+    display: block;
+    margin-top: 5px;
+    color: #888;
+}
+
+/* --- Estilo do Botão --- */
+.btn-primary-small {
+    /* Mantendo o estilo do seu botão primário */
+    display: block;
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 0.9em;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    background: linear-gradient(90deg, #7b2ff7, #9f48ff);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-primary-small:hover {
+    background: linear-gradient(90deg, #9f48ff, #7b2ff7);
+}
+
+
+/* --- Responsividade para telas menores que 1200px (ex: 3 ou 4 colunas) --- */
+@media (max-width: 1200px) {
+    .games-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 25px;
+    }
+}
+
+/* --- Responsividade para telas menores que 768px (ex: 2 colunas) --- */
+@media (max-width: 768px) {
+    .games-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+    }
+}
+
+/* --- Estilo para mensagens de erro/carregamento --- */
+#games-list > p {
+    grid-column: 1 / -1; /* Faz a mensagem ocupar todas as colunas */
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
