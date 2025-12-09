@@ -1,4 +1,4 @@
-import { API_URL, logout, getToken } from './utils.js';
+import { API_URL, logout, getToken, checkAuth } from './utils.js';
 
 const gameId = new URLSearchParams(window.location.search).get("gameId");
 
@@ -13,18 +13,12 @@ const btnAvaliar = document.getElementById("btn-avaliar");
 
 async function loadGameDetails() {
     try {
-        const token = getToken()
-
-        if(!token){
-            alert('Vá se lascar')
-            return
-        }
-
+        checkAuth();
         const response = await fetch(`${API_URL}/games/details/${gameId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${getToken()}`
             },
         });
         const game = await response.json();
