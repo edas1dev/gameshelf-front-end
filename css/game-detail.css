@@ -1,0 +1,122 @@
+/* Container geral */
+.game-details-container {
+  width: 90%;
+  max-width: 1400px;
+  margin: 0 auto;
+  color: #e3e3e3;
+}
+
+/* --- HEADER DO JOGO --- */
+.game-header {
+  position: relative;
+  margin-top: 20px;
+}
+
+.header-image {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+  opacity: 0.85;
+}
+
+.header-info {
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+}
+
+.header-info h1 {
+  font-size: 40px;
+  margin: 0;
+  color: #fff;
+  text-shadow: 2px 2px 6px #000;
+}
+
+.game-rating {
+  font-size: 20px;
+  margin-top: 10px;
+  color: #ffc107;
+  font-weight: bold;
+}
+
+/* --- CONTEÚDO --- */
+.game-content {
+  display: flex;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+/* PAINEL ESQUERDO */
+.left-panel {
+  flex: 3;
+}
+
+.left-panel h2 {
+  border-left: 4px solid #4a90e2;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+.game-description {
+  text-align: justify;
+  line-height: 1.7;
+  font-size: 16px;
+  color: #ddd;
+  padding: 10px 0;
+}
+
+/* Screenshots */
+.screenshots-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.screenshots-grid img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+  transition: transform 0.2s;
+}
+
+.screenshots-grid img:hover {
+  transform: scale(1.04);
+}
+
+/* Avaliações */
+.review-card {
+  background: #1c1e26;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.review-card strong {
+  color: #4a90e2;
+}
+
+/* PAINEL DIREITO */
+.right-panel {
+  flex: 1;
+}
+
+.game-box {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.box-image {
+  width: 100%;
+  border-radius: 6px;
+  box-shadow: 0 0 10px #000;
+}
+
+#btn-avaliar {
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  font-size: 18px;
+}

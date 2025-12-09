@@ -6,7 +6,7 @@ const gamesListContainer = document.getElementById("games-list");
 async function fetchAndRenderGames() {
     gamesListContainer.innerHTML = '<p style="color:white; text-align:center;">Carregando catálogo...</p>';
     try {
-        const response = await fetch(`${API_URL}/games`);
+        const response = await fetch(`${API_URL}/games?ranking=popular&quantity=80`);
         if (!response.ok) {
             throw new Error("Falha ao carregar o catálogo de jogos.");
         }
@@ -33,7 +33,7 @@ function renderGames(games) {
         const card = document.createElement("div");
         card.classList.add("game-card");
         const imageUrl = game.backgroundImage || '';
-        const rating = game.gameData?.rating ? `${game.gameData.rating} / 5` : 'N/A';
+        const rating = game.gameData?.metacritic ? `${game.gameData.metacritic} / 5` : 'N/A';
         
         card.innerHTML = `
             <div class="game-image-container">
@@ -42,7 +42,7 @@ function renderGames(games) {
             <div class="game-info">
                 <h3>${game.title}</h3>
                 <p class="game-rating">⭐ Nota: <strong>${rating}</strong></p>
-                <a href="detalhes.html?gameId=${game.id}" class="btn-primary-small">Ver Detalhes</a>
+                <a href="game-detail.html?gameId=${game.id}" class="btn-primary-small">Ver Detalhes</a>
             </div>
         `;
         gamesListContainer.appendChild(card);

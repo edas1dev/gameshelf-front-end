@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalhes do Jogo - Gameshelf</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/game-detail.css">
+</head>
+
+<body>
+  <header class="navbar">
+    <div class="logo"><a href="catalogo.html">GAMESHELF</a></div>
+    <nav class="nav-links">
+      <a href="catalogo.html">Catálogo</a>
+      <a href="meu-perfil.html">Meu Perfil</a>
+      <a href="#" onclick="logout()">Sair</a>
+    </nav>
+  </header>
+
+  <main class="game-details-container">
+    
+    <section class="game-header">
+      <img id="header-image" class="header-image" src="" alt="Banner do jogo">
+      <div class="header-info">
+        <h1 id="game-title">Carregando...</h1>
+        <p id="game-rating" class="game-rating"></p>
+      </div>
+    </section>
+
+    <section class="game-content">
+      <div class="left-panel">
+        <h2>Sobre este jogo</h2>
+        <p id="game-description" class="game-description"></p>
+
+        <h2>Avaliações dos Utilizadores</h2>
+        <div id="reviews-container"></div>
+      </div>
+      
+
+      <div class="right-panel">
+        <h2>Screenshot</h2>
+        <div id="screenshots" class="screenshots-grid"></div>
+        <div class="game-box">
+          <img id="box-image" class="box-image" src="" alt="Capa do jogo">
+        </div>
+        
+        <button class="btn-primary" id="btn-avaliar">
+          Avaliar este jogo
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <script type="module" src="/scripts/utils.js"></script>
+  <script type="module" src="/scripts/game-detail.js"></script>
+</body>
+</html>
