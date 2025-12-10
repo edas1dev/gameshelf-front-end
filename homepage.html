@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gameshelf - Descubra & Avalie</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/homepage.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header class="navbar">
+    <div class="logo"><a href="homepage.html">GAMESHELF</a></div>
+    <nav class="nav-links">
+      <a href="meu-perfil.html">Meu Perfil</a>
+      <a href="#" onclick="logout()">Sair</a>
+    </nav>
+    <div class="menu-toggle" id="menu-toggle">☰</div>
+  </header>
+
+  <section class="search-hero">
+    <div class="hero-content">
+      <h1>Explore o universo dos jogos</h1>
+      <div class="search-bar-large">
+        <input type="text" id="main-search-input" placeholder="Busque por títulos, ex: Sonic...">
+        <button id="main-search-btn">Buscar</button>
+      </div>
+    </div>
+  </section>
+
+  <main class="forum-container">
+    
+    <div id="showcase-wrapper">
+      <section class="shelf-section highlight-gold">
+        <div class="shelf-header">
+          <h2>🏆 Hall da Fama (Melhores Avaliados)</h2>
+          <p>Os títulos com as notas mais altas da nossa comunidade.</p>
+        </div>
+        <div id="best-rated-container" class="games-row">
+          <div class="loader"></div>
+        </div>
+      </section>
+
+      <section class="shelf-section highlight-blue">
+        <div class="shelf-header">
+          <h2>💬 Em Discussão (Mais Avaliados)</h2>
+          <p>Os jogos que estão gerando mais buzz e reviews.</p>
+        </div>
+        <div id="most-reviewed-container" class="games-row">
+          <div class="loader"></div>
+        </div>
+      </section>
+    </div>
+
+    <section class="shelf-section" id="main-grid-section">
+      <div class="shelf-header">
+        <h2 id="main-grid-title">🔥 Populares do Momento</h2>
+        <p id="main-grid-desc">Explorando os títulos mais jogados atualmente.</p>
+      </div>
+      
+      <div id="status-message"></div>
+
+      <div id="main-grid-container" class="games-grid-large">
+        <div class="loader"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <img src="img/image.png" alt="Logo Gameshelf" class="footer-logo">
+      <p>&copy; 2025 Gameshelf - IFAL</p>
+    </div>
+  </footer>
+
+  <script type="module" src="/scripts/utils.js"></script>
+  <script type="module" src="/scripts/homepage.js"></script>
+</body>
+</html>

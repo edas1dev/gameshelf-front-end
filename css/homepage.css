@@ -1,0 +1,219 @@
+/* Container Principal */
+.forum-container {
+    padding: 20px 5% 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* === SEARCH HERO (Novo) === */
+.search-hero {
+    background: radial-gradient(circle at center, #1d1d3f 0%, #0b0b1a 100%);
+    padding: 60px 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(123, 47, 247, 0.2);
+    margin-bottom: 30px;
+}
+
+.hero-content h1 {
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+    background: linear-gradient(90deg, #fff, #a679ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.search-bar-large {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#main-search-input {
+    flex-grow: 1;
+    padding: 15px 20px;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    border: 2px solid #29294d;
+    background: #0c0c24;
+    color: #fff;
+    outline: none;
+    transition: 0.3s;
+}
+
+#main-search-input:focus {
+    border-color: #7b2ff7;
+    box-shadow: 0 0 15px rgba(123, 47, 247, 0.3);
+}
+
+#main-search-btn {
+    padding: 0 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #7b2ff7, #9f48ff);
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#main-search-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(123, 47, 247, 0.5);
+}
+
+/* === PRATELEIRAS (Estilo Fórum) === */
+.shelf-section {
+    margin-bottom: 50px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 16px;
+    padding: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: 0.3s;
+}
+
+.shelf-header {
+    margin-bottom: 20px;
+    border-left: 5px solid #7b2ff7;
+    padding-left: 15px;
+}
+
+.shelf-header h2 { font-size: 1.6rem; margin: 0; color: #fff; }
+.shelf-header p { margin: 5px 0 0 0; color: #aaa; font-size: 0.9rem; }
+
+/* Destaques de Cor */
+.highlight-gold .shelf-header { border-left-color: #ffcc00; }
+.highlight-gold .shelf-header h2 { color: #ffcc00; }
+.highlight-blue .shelf-header { border-left-color: #00d2ff; }
+.highlight-blue .shelf-header h2 { color: #00d2ff; }
+
+/* === LISTAS E GRIDS === */
+/* Row (Scroll Horizontal) */
+.games-row {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 15px;
+    scroll-behavior: smooth;
+}
+
+/* Grid (Grande) */
+.games-grid-large {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 25px;
+}
+
+/* === CARD === */
+.game-card {
+    background: #151525;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative; /* Para o link cobrir tudo se quiser */
+}
+
+/* Na row, tamanho fixo */
+.games-row .game-card {
+    min-width: 240px;
+    max-width: 240px;
+}
+
+.game-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(123, 47, 247, 0.3);
+    z-index: 2;
+}
+
+.game-image-container {
+    height: 150px;
+    overflow: hidden;
+}
+
+.game-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.game-card:hover .game-image {
+    transform: scale(1.1);
+}
+
+.game-info {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.game-info h3 {
+    font-size: 1rem;
+    margin: 0 0 8px 0;
+    color: #fff;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.game-rating {
+    font-size: 0.9rem;
+    color: #ffcc00;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.btn-details {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: #2a2a4a;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.btn-details:hover {
+    background: #7b2ff7;
+}
+
+/* Scrollbar Customizada */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #0b0b1a; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #7b2ff7; }
+
+/* Loader */
+.loader {
+    margin: 40px auto;
+    border: 4px solid rgba(255,255,255,0.1);
+    border-top: 4px solid #7b2ff7;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .search-hero { padding: 40px 15px; }
+    .hero-content h1 { font-size: 1.6rem; }
+    .search-bar-large { flex-direction: column; }
+    #main-search-btn { width: 100%; padding: 12px; }
+    .games-grid-large { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+}

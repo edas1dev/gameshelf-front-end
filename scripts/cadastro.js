@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // 3. Salva o token e redireciona
                 saveToken(loginData.access_token);
                 alert("Cadastro e Login realizados com sucesso!");
-                window.location.href = "catalogo.html";
+                window.location.href = "homepage.html";
 
             } catch (error) {
                 console.error('Erro de rede ou na requisição:', error);
