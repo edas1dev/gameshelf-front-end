@@ -42,17 +42,38 @@ body {
   text-shadow: 0 0 10px rgba(159, 72, 255, 0.7);
 }
 
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
+/* --- NAVBAR LINKS ESTILIZADOS --- */
 .nav-links a {
-  color: #fff;
+  color: #e8e8e8;
+  padding: 8px 14px;
+  margin-left: 18px;
+  font-size: 17px;
+  border-radius: 6px;
+  transition: 0.25s;
   text-decoration: none;
   font-weight: 500;
-  transition: 0.3s;
+}
+
+/* Hover moderno */
+.nav-links a:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+/* Botão sair com cor especial */
+.nav-links a.logout-btn {
+  background: #ff4747;
+  color: white;
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 8px 16px;
+  box-shadow: 0 0 8px rgba(255, 60, 60, .8);
+}
+
+.nav-links a.logout-btn:hover {
+  background: #ff1a1a;
+  box-shadow: 0 0 14px rgba(255, 20, 20, 1);
 }
 
 .menu-toggle {
@@ -63,7 +84,8 @@ body {
 }
 
 /*===== LOGIN E CADASTRO =====*/
-.login-section, .cadastro-section {
+.login-section,
+.cadastro-section {
   background-color: #0b0b1a;
   min-height: 80vh;
   display: flex;
@@ -72,7 +94,8 @@ body {
   padding: 40px 20px;
 }
 
-.login-box, .cadastro-box {
+.login-box,
+.cadastro-box {
   background: #151530;
   padding: 40px;
   border-radius: 15px;
@@ -83,17 +106,20 @@ body {
   transition: transform 0.3s ease;
 }
 
-.login-box:hover, .cadastro-box:hover {
+.login-box:hover,
+.cadastro-box:hover {
   transform: translateY(-5px);
 }
 
-.login-box h2, .cadastro-box h2 {
+.login-box h2,
+.cadastro-box h2 {
   color: #a679ff;
   font-size: 1.8em;
   margin-bottom: 10px;
 }
 
-.login-subtitle, .cadastro-subtitle {
+.login-subtitle,
+.cadastro-subtitle {
   color: #cfcfcf;
   font-size: 0.9em;
   margin-bottom: 25px;
@@ -128,7 +154,8 @@ body {
   border-color: #a679ff;
 }
 
-.login-button, .cadastro-button {
+.login-button,
+.cadastro-button {
   width: 100%;
   background: linear-gradient(90deg, #1d3e9d, #8a2be2);
   border: none;
@@ -141,7 +168,8 @@ body {
   transition: 0.3s;
 }
 
-.login-button:hover, .cadastro-button:hover {
+.login-button:hover,
+.cadastro-button:hover {
   opacity: 0.9;
   transform: scale(1.03);
 }
@@ -162,7 +190,9 @@ body {
 }
 
 @media (max-width: 480px) {
-  .login-box, .cadastro-box {
+
+  .login-box,
+  .cadastro-box {
     padding: 30px 20px;
   }
 }
@@ -290,7 +320,7 @@ body {
   margin: 0 auto;
   font-size: 0.95em;
   line-height: 1.6;
-  margin-left: 2px; 
+  margin-left: 2px;
 }
 
 /* ===== FOOTER ===== */
@@ -505,7 +535,7 @@ footer {
   font-size: 1em;
   background: #0c0c24;
   color: #fff;
-  font-family: 'Poppins', sans-serif; 
+  font-family: 'Poppins', sans-serif;
   transition: border-color 0.2s;
   height: 40px;
 
@@ -513,7 +543,7 @@ footer {
   -webkit-appearance: none;
   -moz-appearance: none;
   cursor: pointer;
-  
+
   background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
   background-repeat: no-repeat;
   background-position: right 15px center;
@@ -526,6 +556,6 @@ footer {
 }
 
 .input-group select option {
-  background-color: #222; 
+  background-color: #222;
   color: #fff;
 }

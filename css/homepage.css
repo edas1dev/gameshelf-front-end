@@ -83,14 +83,13 @@
 .shelf-header h2 { font-size: 1.6rem; margin: 0; color: #fff; }
 .shelf-header p { margin: 5px 0 0 0; color: #aaa; font-size: 0.9rem; }
 
-/* Destaques de Cor */
+/* Destaques */
 .highlight-gold .shelf-header { border-left-color: #ffcc00; }
 .highlight-gold .shelf-header h2 { color: #ffcc00; }
 .highlight-blue .shelf-header { border-left-color: #00d2ff; }
 .highlight-blue .shelf-header h2 { color: #00d2ff; }
 
 /* === LISTAS E GRIDS === */
-/* Row (Scroll Horizontal) */
 .games-row {
     display: flex;
     gap: 20px;
@@ -99,7 +98,6 @@
     scroll-behavior: smooth;
 }
 
-/* Grid (Grande) */
 .games-grid-large {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -116,10 +114,9 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    position: relative; /* Para o link cobrir tudo se quiser */
+    position: relative;
 }
 
-/* Na row, tamanho fixo */
 .games-row .game-card {
     min-width: 240px;
     max-width: 240px;
@@ -152,6 +149,8 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    align-items: center; /* centraliza conteúdo */
+    text-align: center;
     justify-content: space-between;
 }
 
@@ -160,10 +159,6 @@
     margin: 0 0 8px 0;
     color: #fff;
     line-height: 1.4;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
 }
 
 .game-rating {
@@ -173,9 +168,11 @@
     font-weight: 600;
 }
 
+/* --- CORREÇÃO DO BOTÃO CENTRALIZADO --- */
 .btn-details {
     display: block;
-    width: 100%;
+    width: 80%;
+    margin: 10px auto 0;
     text-align: center;
     background: #2a2a4a;
     color: white;
@@ -184,14 +181,15 @@
     border-radius: 8px;
     font-size: 0.85rem;
     font-weight: 600;
-    transition: 0.2s;
+    transition: 0.2s ease;
 }
 
 .btn-details:hover {
     background: #7b2ff7;
+    transform: scale(1.05);
 }
 
-/* Scrollbar Customizada */
+/* Scrollbar Custom */
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: #0b0b1a; }
 ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
@@ -207,7 +205,10 @@
     height: 40px;
     animation: spin 1s linear infinite;
 }
-@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
 /* Responsividade */
 @media (max-width: 768px) {
