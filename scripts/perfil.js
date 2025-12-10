@@ -6,7 +6,7 @@ const deleteButton = document.getElementById('delete-account-btn');
 const updateForm = document.getElementById('update-user-form');
 const userNameTitle = document.getElementById('user-name-title');
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     // 1. Verifica se o usuário está logado. Se não, redireciona.
     if (!checkAuth()) return;
 
@@ -49,16 +49,16 @@ function renderUserInfo(user) {
     userNameTitle.textContent = `Perfil de ${user.name}`;
     document.getElementById('info-name').textContent = user.name;
     document.getElementById('info-email').textContent = user.email;
-    
+
     // Preenche o formulário de atualização com o nome atual
-    document.getElementById('update-name').value = user.name; 
+    document.getElementById('update-name').value = user.name;
 }
 
 //Busca as avaliações do usuário logado (GET /reviews/me).
 async function fetchUserReviews() {
     if (!reviewsContainer) return;
     reviewsContainer.innerHTML = '<p>Carregando avaliações...</p>';
-    
+
     try {
         const token = getToken();
         if (!token) return;
@@ -72,7 +72,7 @@ async function fetchUserReviews() {
         if (!response.ok) {
             throw new Error("Não foi possível carregar as avaliações.");
         }
-        
+
         const reviews = await response.json();
         renderUserReviews(reviews);
 
@@ -94,26 +94,70 @@ function renderUserReviews(reviews) {
     reviews.forEach(review => {
         const card = document.createElement("div");
         card.classList.add("review-card");
+        // Adiciona um data attribute com o ID da review para facilitar a manipulação
+        card.dataset.reviewId = review.id;
 
         const gameTitle = review.game ? review.game.title : `Jogo ID: ${review.gameId}`;
-        
+
         card.innerHTML = `
-            <h4>${gameTitle}</h4>
+            <div class="review-header">
+                <h4>${gameTitle}</h4>
+                <button class="btn-delete-review" data-review-id="${review.id}">X</button>
+            </div>
             <p><strong>Nota:</strong> ${review.rating}/10</p>
             <p>${review.content}</p>
             <small>Jogo avaliado: ${review.title}</small>
         `;
         reviewsContainer.appendChild(card);
     });
+
+    // Adiciona o listener para os novos botões de deletar review
+    document.querySelectorAll('.btn-delete-review').forEach(button => {
+        button.addEventListener('click', handleDeleteReview);
+    });
 }
 
- //Lida com a atualização do usuário (PUT /users/me).
+// Lida com a deleção de uma avaliação (DELETE /reviews/:id).
+async function handleDeleteReview(e) {
+    const reviewId = e.target.dataset.reviewId;
+    if (!reviewId) return;
+
+    if (!confirm("Tem certeza que deseja DELETAR esta avaliação?")) {
+        return;
+    }
+
+    try {
+        const token = getToken();
+        const response = await fetch(`${API_URL}/reviews/${reviewId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (!response.ok) {
+            const data = await response.json();
+            throw new Error(data.message || "Falha ao deletar a avaliação.");
+        }
+
+        alert("Avaliação deletada com sucesso!");
+        // Recarrega as avaliações
+        fetchUserReviews();
+
+    } catch (error) {
+        console.error("Erro ao deletar avaliação:", error);
+        alert(`Erro na deleção: ${error.message}`);
+    }
+}
+
+
+//Lida com a atualização do usuário (PUT /users/me).
 async function handleUpdateUser(e) {
     e.preventDefault();
 
     const name = document.getElementById('update-name').value.trim();
     const password = document.getElementById('update-password').value.trim();
-    
+
     const body = {};
     if (name) body.name = name;
     if (password) body.password = password;
@@ -122,7 +166,7 @@ async function handleUpdateUser(e) {
         alert("Nenhum campo para atualizar foi preenchido.");
         return;
     }
-    
+
     try {
         const token = getToken();
         const response = await fetch(`${API_URL}/users/me`, {
@@ -141,7 +185,7 @@ async function handleUpdateUser(e) {
 
         alert("Perfil atualizado com sucesso!");
         // Recarrega os dados para mostrar o novo nome imediatamente
-        fetchUserInfo(); 
+        fetchUserInfo();
 
     } catch (error) {
         console.error("Erro ao atualizar perfil:", error);
