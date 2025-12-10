@@ -19,7 +19,6 @@
   </header>
 
   <main class="game-details-container">
-    
     <section class="game-header">
       <img id="header-image" class="header-image" src="" alt="Banner do jogo">
       <div class="header-info">
@@ -33,10 +32,19 @@
         <h2>Sobre este jogo</h2>
         <p id="game-description" class="game-description"></p>
 
+        <h2>Informações do Jogo</h2>
+        <div id="game-info-box" class="info-box">
+          <p><strong>Data de lançamento:</strong> <span id="info-release"></span></p>
+          <p><strong>Desenvolvedores:</strong> <span id="info-devs"></span></p>
+          <p><strong>Plataformas:</strong> <span id="info-platforms"></span></p>
+          <p><strong>Tempo médio de jogo:</strong> <span id="info-playtime"></span></p>
+          <p><strong>Tags:</strong> <span id="info-tags"></span></p>
+          <p><strong>Metacritic:</strong> <span id="info-metacritic"></span></p>
+        </div>
+
         <h2>Avaliações dos Utilizadores</h2>
         <div id="reviews-container"></div>
       </div>
-      
 
       <div class="right-panel">
         <h2>Screenshot</h2>
@@ -44,13 +52,12 @@
         <div class="game-box">
           <img id="box-image" class="box-image" src="" alt="Capa do jogo">
         </div>
-        
+
         <button class="btn-primary" id="btn-avaliar">
           Avaliar este jogo
         </button>
       </div>
     </section>
-
   </main>
 
   <script type="module" src="/scripts/utils.js"></script>

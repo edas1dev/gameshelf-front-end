@@ -1,65 +1,59 @@
-/* --- Configuração do GRID (5 colunas) --- */
+/* --- GRID DE JOGOS --- */
 .games-grid {
-    /* Usando CSS Grid para criar 5 colunas responsivas */
     display: grid;
-    /* auto-fit garante que as colunas se ajustem */
-    /* minmax(200px, 1fr) garante um tamanho mínimo de 200px por coluna */
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px; /* Espaço entre os cards */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 35px;
     padding: 40px 10%;
-    /* Mínimo de padding para telas pequenas */
-    padding-left: 20px;
-    padding-right: 20px;
 }
 
-/* --- Estilo do Card Individual --- */
+/* --- CARD DO JOGO (ESTILO MODERNO) --- */
 .game-card {
-    background: #1e1e40; /* Roxo escuro */
-    border-radius: 12px;
+    background: linear-gradient(135deg, #1b1b2f, #262648);
+    border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: left;
-    height: 100%; /* Garante que todos os cards na mesma linha tenham a mesma altura */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+    transition: transform 0.32s ease, box-shadow 0.32s ease;
+    height: 100%;
     display: flex;
-    flex-direction: column; /* Organiza conteúdo verticalmente */
+    flex-direction: column;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .game-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(138, 43, 226, 0.6); /* Sombra roxa mais destacada */
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.65);
+    border-color: rgba(0, 200, 255, 0.4);
 }
 
-/* --- Estilo da Imagem / Background --- */
+/* --- IMAGEM DO JOGO (AGORA MAIS DESTACADA) --- */
 .game-image-container {
-    height: 160px; /* Altura da imagem do card */
+    height: 170px;
     overflow: hidden;
-    border-bottom: 2px solid rgba(0, 210, 255, 0.5); /* Linha divisória */
+    position: relative;
 }
 
 .game-image {
     width: 100%;
     height: 100%;
-    /* Garante que a imagem preencha o container sem distorcer e recorte o excesso */
-    object-fit: cover; 
+    object-fit: cover;
     transition: transform 0.5s ease;
 }
 
 .game-card:hover .game-image {
-    transform: scale(1.05); /* Efeito de zoom sutil ao passar o mouse */
+    transform: scale(1.08);
 }
 
-/* --- Estilo das Informações do Jogo --- */
+/* --- INFORMAÇÕES DO CARD --- */
 .game-info {
     padding: 15px;
-    flex-grow: 1; /* Permite que este bloco ocupe o espaço restante */
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Empurra o botão para baixo */
 }
 
 .game-info h3 {
-    color: #00d2ff; /* Azul Neon */
+    color: #b6bbbd;
     font-size: 1.1em;
     margin-top: 0;
     margin-bottom: 5px;
@@ -67,53 +61,51 @@
 }
 
 .game-rating {
-    margin: 5px 0 15px;
+    margin: 6px 0 18px;
     font-size: 1em;
-    color: #ffcc00; /* Amarelo para nota */
+    color: #ebb22d;
     font-weight: 600;
 }
 
-.game-info p small {
-    display: block;
-    margin-top: 5px;
-    color: #888;
+.game-info a.btn-primary-small {
+    margin-top: auto;       
+    align-self: center;
+    width: 85%;            
 }
 
-/* --- Estilo do Botão --- */
 .btn-primary-small {
-    /* Mantendo o estilo do seu botão primário */
     display: block;
-    width: 100%;
-    padding: 8px 10px;
-    font-size: 0.9em;
     text-decoration: none;
+    padding: 10px 12px;
+    font-size: 0.95em;
     text-align: center;
     border-radius: 5px;
     background: linear-gradient(90deg, #7b2ff7, #9f48ff);
     color: white;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: 0.25s ease;
 }
 
 .btn-primary-small:hover {
-    background: linear-gradient(90deg, #9f48ff, #7b2ff7);
+    background: linear-gradient(90deg, #b55fff, #8f3aff);
+    box-shadow: 0 0 12px rgba(180, 90, 255, 0.6);
 }
 
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 768px) {
+    .games-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+    }
+}
 
 /* --- Responsividade para telas menores que 1200px (ex: 3 ou 4 colunas) --- */
 @media (max-width: 1200px) {
     .games-grid {
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         gap: 25px;
-    }
-}
-
-/* --- Responsividade para telas menores que 768px (ex: 2 colunas) --- */
-@media (max-width: 768px) {
-    .games-grid {
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 20px;
     }
 }
 

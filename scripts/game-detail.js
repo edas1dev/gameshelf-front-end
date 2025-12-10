@@ -21,16 +21,23 @@ async function loadGameDetails() {
                 'Authorization': `Bearer ${getToken()}`
             },
         });
+
         const game = await response.json();
-        console.log(game.title)
 
         headerImg.src = game.backgroundImage;
         boxImg.src = game.backgroundImageAdditional;
         gameTitle.textContent = game.title;
-        gameRating.textContent = game.rating
-            ? `⭐ ${game.rating} / ${game.ratingTop}`
-            : "Sem Avaliação";
+
+        gameRating.textContent = game.rating ? `⭐ ${game.rating} / ${game.ratingTop ?? 10}` : "Sem Avaliação";
         gameDescription.innerHTML = game.description || "Sem descrição.";
+
+        document.getElementById("info-release").textContent = game.releaseDate || "Não informado";
+        document.getElementById("info-devs").textContent = game.developers?.join(", ") || "Desconhecidos";
+        document.getElementById("info-platforms").textContent = game.plataforms?.join(", ") || "—";
+        document.getElementById("info-playtime").textContent = game.playtimeHours ? `${game.playtimeHours}h` : "—";
+        document.getElementById("info-tags").textContent = game.tags?.slice(0, 8).join(", ") || "—";
+        document.getElementById("info-metacritic").textContent = game.metacritic ?? "—";
+
         screenshotsContainer.innerHTML = "";
         game.screenshots?.slice(0, 6).forEach(img => {
             const el = document.createElement("img");
@@ -45,7 +52,6 @@ async function loadGameDetails() {
     }
 }
 
-// Buscar avaliações
 async function loadReviews() {
     const response = await fetch(`${API_URL}/reviews?gameId=${gameId}`, {
         headers: { "Authorization": `Bearer ${getToken()}` }
@@ -69,6 +75,8 @@ async function loadReviews() {
         reviewsContainer.appendChild(card);
     });
 }
+
+Window.logout = logout;
 
 btnAvaliar.addEventListener("click", () => {
     window.location.href = `avaliacao.html?gameId=${gameId}`;
