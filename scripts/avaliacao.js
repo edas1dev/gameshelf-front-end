@@ -4,33 +4,6 @@ const formAvaliacao = document.getElementById("form-avaliacao");
 const listaAvaliacoesContainer = document.getElementById("avaliacoes-container");
 const selectJogo = document.getElementById("select-jogo");
 
-// Função para buscar e renderizar a lista de jogos no select
-async function fetchAndRenderJogos() {
-    try {
-        selectJogo.innerHTML = '<option value="" disabled selected>Carregando jogos...</option>';
-        
-        const response = await fetch(`${API_URL}/games`); 
-        
-        if (!response.ok) {
-            throw new Error("Erro ao carregar o catálogo de jogos.");
-        }
-
-        const games = await response.json();
-
-        let optionsHtml = '<option value="" disabled selected>Selecione um jogo...</option>';
-        
-        games.forEach(game => {
-            optionsHtml += `<option value="${game.id}">${game.title}</option>`; 
-        });
-        
-        selectJogo.innerHTML = optionsHtml;
-
-    } catch (error) {
-        selectJogo.innerHTML = '<option value="" disabled selected>Erro ao carregar</option>';
-        console.error("Erro ao carregar jogos:", error.message);
-    }
-}
-
 // Função para postar a nova review
 async function handlePostReview({ game_id, rating, content, title }) {
     try {
@@ -105,18 +78,18 @@ function renderMinhasReviews(reviews) {
 
 document.addEventListener("DOMContentLoaded", async () => {
     if (checkAuth()) {
-        await fetchAndRenderJogos();
         await fetchAndRenderMinhasReviews();
     }
 
     if (formAvaliacao) {
         formAvaliacao.addEventListener("submit", async (e) => {
             e.preventDefault();
-            
-            const game_id = parseInt(selectJogo.value);
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const game_id = urlParams.get('gameId');
             const rating = parseFloat(document.getElementById("nota").value);
             const content = document.getElementById("comentario").value.trim();
-            const title = `${selectJogo.selectedOptions[0].text}`; 
+            const title = document.getElementById("titulo").value.trim();
 
             if (!game_id) {
                 alert("Selecione um jogo válido!");

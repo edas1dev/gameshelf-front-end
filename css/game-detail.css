@@ -94,6 +94,14 @@
   margin-bottom: 15px;
 }
 
+.review-card .review-rating {
+    color: gold;
+}
+
+.review-title {
+    font-weight: bold;
+}
+
 .review-card strong {
   color: #4a90e2;
 }

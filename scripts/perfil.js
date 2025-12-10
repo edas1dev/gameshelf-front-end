@@ -105,8 +105,8 @@ function renderUserReviews(reviews) {
                 <button class="btn-delete-review" data-review-id="${review.id}">X</button>
             </div>
             <p><strong>Nota:</strong> ${review.rating}/10</p>
+            <p><strong>${review.title}</strong></p>
             <p>${review.content}</p>
-            <small>Jogo avaliado: ${review.title}</small>
         `;
         reviewsContainer.appendChild(card);
     });

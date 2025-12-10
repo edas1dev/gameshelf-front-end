@@ -1,4 +1,4 @@
-import { API_URL, logout } from './utils.js';
+import { API_URL, logout, getToken } from './utils.js';
 
 const showcaseWrapper = document.getElementById('showcase-wrapper');
 const bestRatedContainer = document.getElementById('best-rated-container');
@@ -60,6 +60,9 @@ async function handleSearch() {
     const query = searchInput.value.trim();
     if (!query) return;
 
+    const token = getToken();
+    if (!token) return;
+
     isSearching = true;
 
     showcaseWrapper.style.display = 'none';
@@ -70,7 +73,11 @@ async function handleSearch() {
     statusMessage.innerHTML = '';
 
     try {
-        const response = await fetch(`${API_URL}/games/search?query=${encodeURIComponent(query)}`);
+        const response = await fetch(`${API_URL}/games/search?query=${encodeURIComponent(query)}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
 
         if (!response.ok) throw new Error('Erro na busca');
 
@@ -125,7 +132,7 @@ function renderCards(games, container) {
         card.classList.add("game-card");
 
         const imageUrl = game.backgroundImage || 'img/placeholder.jpg';
-        const rating = game.rating ? game.rating.toFixed(1) : 'N/A';
+        const rating = game.rating ? game.rating.toFixed(1) : game.metacritic ? game.metacritic : 'N/A';
 
         card.innerHTML = `
             <div class="game-image-container">

@@ -24,17 +24,13 @@
 
     <form id="form-avaliacao" class="avaliacao-form">
       <div class="input-group">
-        <label for="select-jogo">Selecione o Jogo</label>
-        <div class="select-wrapper">
-          <select id="select-jogo" required>
-            <option value="" disabled selected>Carregando jogos...</option>
-          </select>
-        </div>
+        <label for="nota">Nota (0 a 10)</label>
+        <input type="number" id="nota" min="0" max="10" required>
       </div>
 
       <div class="input-group">
-        <label for="nota">Nota (0 a 10)</label>
-        <input type="number" id="nota" min="0" max="10" required>
+        <label for="titulo">Titulo</label>
+        <input id="titulo" rows="4" placeholder="Digite o título da sua review..." required></input>
       </div>
 
       <div class="input-group">

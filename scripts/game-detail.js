@@ -69,7 +69,9 @@ async function loadReviews() {
         const card = document.createElement("div");
         card.classList.add("review-card");
         card.innerHTML = `
-            <strong>Nota: ${r.rating}/10</strong>
+            <strong>${r.authoredBy}</strong>
+            <strong class="review-rating">${r.rating}/10</strong>
+            <p class="review-title">${r.title}</p>
             <p>${r.content}</p>
         `;
         reviewsContainer.appendChild(card);
