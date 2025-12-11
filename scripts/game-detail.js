@@ -11,6 +11,8 @@ const screenshotsContainer = document.getElementById("screenshots");
 const reviewsContainer = document.getElementById("reviews-container");
 const btnAvaliar = document.getElementById("btn-avaliar");
 
+window.logout = logout;
+
 async function loadGameDetails() {
     try {
         checkAuth();
@@ -65,20 +67,18 @@ async function loadReviews() {
     }
 
     reviewsContainer.innerHTML = "";
-    reviews.forEach(r => {
+    reviews.forEach(review => {
         const card = document.createElement("div");
         card.classList.add("review-card");
         card.innerHTML = `
-            <strong>${r.authoredBy}</strong>
-            <strong class="review-rating">${r.rating}/10</strong>
-            <p class="review-title">${r.title}</p>
-            <p>${r.content}</p>
+            <strong>${review.authoredBy} -> </strong>
+            <strong class="review-rating">${review.rating}/10</strong>
+            <p class="review-title">${review.title}</p>
+            <p>${review.content}</p>
         `;
         reviewsContainer.appendChild(card);
     });
 }
-
-Window.logout = logout;
 
 btnAvaliar.addEventListener("click", () => {
     window.location.href = `avaliacao.html?gameId=${gameId}`;

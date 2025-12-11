@@ -6,6 +6,8 @@ const deleteButton = document.getElementById('delete-account-btn');
 const updateForm = document.getElementById('update-user-form');
 const userNameTitle = document.getElementById('user-name-title');
 
+window.logout = logout;
+
 document.addEventListener("DOMContentLoaded", function () {
     // 1. Verifica se o usuário está logado. Se não, redireciona.
     if (!checkAuth()) return;
@@ -49,9 +51,6 @@ function renderUserInfo(user) {
     userNameTitle.textContent = `Perfil de ${user.name}`;
     document.getElementById('info-name').textContent = user.name;
     document.getElementById('info-email').textContent = user.email;
-
-    // Preenche o formulário de atualização com o nome atual
-    document.getElementById('update-name').value = user.name;
 }
 
 //Busca as avaliações do usuário logado (GET /reviews/me).
@@ -91,27 +90,25 @@ function renderUserReviews(reviews) {
         return;
     }
 
-    reviews.forEach(review => {
+    const latest = reviews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    latest.forEach(review => {
         const card = document.createElement("div");
         card.classList.add("review-card");
-        // Adiciona um data attribute com o ID da review para facilitar a manipulação
         card.dataset.reviewId = review.id;
 
         const gameTitle = review.game ? review.game.title : `Jogo ID: ${review.gameId}`;
-
         card.innerHTML = `
             <div class="review-header">
                 <h4>${gameTitle}</h4>
                 <button class="btn-delete-review" data-review-id="${review.id}">X</button>
             </div>
-            <p><strong>Nota:</strong> ${review.rating}/10</p>
-            <p><strong>${review.title}</strong></p>
-            <p>${review.content}</p>
+            <p>Nota: <strong class="review-rating">${review.rating}/10</strong></p>
+            <p class="review-title">${review.title}</p>
+            <p class="review-content">${review.content}</p>
         `;
         reviewsContainer.appendChild(card);
     });
 
-    // Adiciona o listener para os novos botões de deletar review
     document.querySelectorAll('.btn-delete-review').forEach(button => {
         button.addEventListener('click', handleDeleteReview);
     });
@@ -150,7 +147,6 @@ async function handleDeleteReview(e) {
     }
 }
 
-
 //Lida com a atualização do usuário (PUT /users/me).
 async function handleUpdateUser(e) {
     e.preventDefault();
@@ -184,7 +180,7 @@ async function handleUpdateUser(e) {
         }
 
         alert("Perfil atualizado com sucesso!");
-        // Recarrega os dados para mostrar o novo nome imediatamente
+        updateForm.reset();
         fetchUserInfo();
 
     } catch (error) {

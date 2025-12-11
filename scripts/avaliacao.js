@@ -1,10 +1,10 @@
-import { API_URL, getToken, checkAuth } from './utils.js';
+import { API_URL, getToken, checkAuth, logout } from './utils.js';
 
 const formAvaliacao = document.getElementById("form-avaliacao");
 const listaAvaliacoesContainer = document.getElementById("avaliacoes-container");
-const selectJogo = document.getElementById("select-jogo");
 
-// Função para postar a nova review
+window.logout = logout;
+
 async function handlePostReview({ game_id, rating, content, title }) {
     try {
         const response = await fetch(`${API_URL}/reviews/`, { 
@@ -30,7 +30,6 @@ async function handlePostReview({ game_id, rating, content, title }) {
     }
 }
 
-// Função para buscar e renderizar as reviews do usuário
 async function fetchAndRenderMinhasReviews() {
     listaAvaliacoesContainer.innerHTML = '<h4>Carregando suas avaliações...</h4>';
     try {
@@ -50,7 +49,6 @@ async function fetchAndRenderMinhasReviews() {
     }
 }
 
-// Função para renderizar os cards de avaliação na tela
 function renderMinhasReviews(reviews) {
     if (!listaAvaliacoesContainer) return;
     
@@ -61,16 +59,17 @@ function renderMinhasReviews(reviews) {
         return;
     }
 
-    reviews.forEach(review => {
+    const latest = reviews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 3);
+    latest.forEach(review => {
         const card = document.createElement("div");
         card.classList.add("avaliacao-card");
 
         const gameTitle = review.game ? review.game.title : `Jogo ID: ${review.gameId}`;
         card.innerHTML = `
             <h4>${gameTitle}</h4>
-            <p><strong>Nota:</strong> ${review.rating}/10</p>
-            <p>${review.content}</p>
-            <small>Jogo avaliado: ${review.title}</small>
+            <p>Nota: <strong class="review-rating">${review.rating}/10</strong></p>
+            <p class="review-title">${review.title}</p>
+            <p class="review-content">${review.content}</p>
         `;
         listaAvaliacoesContainer.appendChild(card);
     });

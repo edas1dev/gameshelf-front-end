@@ -1,0 +1,96 @@
+/* ===== AVALIAÇÕES – SOMENTE ESTA PÁGINA ===== */
+
+.avaliacoes-section {
+  background: #0c0c24;
+  color: #fff;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.avaliacoes-section h2 {
+  color: #a679ff;
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.avaliacoes-section p {
+  color: #ccc;
+  margin-bottom: 30px;
+}
+
+/* FORMULÁRIO DE AVALIAÇÃO */
+.avaliacao-form {
+  background: #151530;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 600px;
+  margin: 0 auto 40px;
+  box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
+  text-align: left;
+}
+
+.avaliacao-form .input-group {
+  margin-bottom: 20px;
+}
+
+.avaliacao-form input,
+.avaliacao-form textarea {
+  width: 100%;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  padding: 10px;
+  background: #0c0c24;
+  color: white;
+  font-size: 1em;
+  border: 1px solid #29294d;
+  resize: none;
+}
+
+.avaliacao-form input:focus,
+.avaliacao-form textarea:focus {
+  border-color: #a679ff;
+}
+
+.lista-avaliacoes {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.lista-avaliacoes h3 {
+  color: #a679ff;
+  margin-bottom: 20px;
+}
+
+.avaliacao-card {
+  background: #2b2b4b;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  box-shadow: 0 0 15px rgba(138, 43, 226, 0.2);
+}
+
+.avaliacao-card h4 {
+  color: #00d2ff;
+  margin-top: 0;
+}
+
+.avaliacao-card p {
+  color: #d0d0ff;
+  margin-bottom: 5px;
+}
+
+.review-title {
+  font-weight: bold;
+}
+
+.review-rating {
+  color: gold;
+}
+
+.review-content {
+  text-align: justify;
+  line-height: 1.7;
+  font-size: 16px;
+}

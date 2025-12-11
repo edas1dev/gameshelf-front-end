@@ -37,6 +37,20 @@
     margin-top: 0;
 }
 
+.review-title {
+    font-weight: bold;
+}
+
+.review-rating {
+    color: gold;
+}
+
+.review-content {
+    text-align: justify;
+    line-height: 1.7;
+    font-size: 16px;
+}
+
 .update-form {
     margin-top: 30px;
     padding-top: 20px;
@@ -75,7 +89,8 @@
 }
 
 .btn-danger {
-    background: #ff4b4b;
+    background: #ff1a1a;
+    box-shadow: 0 0 14px rgba(255, 20, 20, 1);
     color: white;
     border: none;
     padding: 10px 20px;
@@ -92,11 +107,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px; /* Para separação visual */
+    margin-bottom: 10px;
+    /* Para separação visual */
 }
 
 .btn-delete-review {
-    background: #cc0000; /* Vermelho mais forte para deletar */
+    background: #ff1a1a;
+    box-shadow: 0 0 14px rgba(255, 20, 20, 1);
     color: white;
     border: none;
     padding: 5px 10px;
@@ -105,18 +122,21 @@
     font-weight: bold;
     font-size: 0.8em;
     transition: background 0.3s;
-    line-height: 1; /* Para centralizar o 'X' */
-    height: 30px; /* Garante que o botão não seja muito pequeno */
+    line-height: 1;
+    /* Para centralizar o 'X' */
+    height: 30px;
+    /* Garante que o botão não seja muito pequeno */
     width: 30px;
 }
 
 .btn-delete-review:hover {
-    background: #ff4b4b;
+    background: #cc0000;
 }
 
 /* Você pode querer ajustar este estilo existente para que ele não interfira no review-header */
 .review-card h4 {
     color: #00d2ff;
     margin-top: 0;
-    margin-bottom: 0; /* Ajustado para que o h4 fique junto com o botão no header */
+    margin-bottom: 0;
+    /* Ajustado para que o h4 fique junto com o botão no header */
 }
