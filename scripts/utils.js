@@ -1,4 +1,4 @@
-export const API_URL = "http://20.201.77.123:3000";
+const API_URL = "https://gameshelf-back-end.onrender.com";
 
 export function getToken() {
   return localStorage.getItem("access_token");
