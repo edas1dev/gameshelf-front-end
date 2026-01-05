@@ -186,4 +186,57 @@
   .nav-links.active {
     display: flex;
   }
+
+  .header-info h1 {
+    font-size: 24px;
+  }
+
+  .header-image {
+    max-height: 250px;
+  }
+
+  .header-info {
+    left: 15px;
+    bottom: 10px;
+  }
+
+  /* Transformar o conteúdo em coluna única */
+  .game-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* Fazer os painéis ocuparem 100% da largura */
+  .left-panel,
+  .right-panel {
+    width: 100%;
+    flex: none;
+  }
+
+  /* Ordem dos elementos no mobile */
+  .right-panel {
+    order: -1;
+    /* Coloca a capa do jogo no topo, antes do "Sobre" */
+  }
+
+  /* Ajustar Grid de Screenshots para 2 colunas no celular */
+  .screenshots-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .screenshots-grid img {
+    height: 120px;
+  }
+
+  /* Ajustar textos de descrição */
+  .game-description {
+    font-size: 14px;
+  }
+
+  /* Info Box mais compacta */
+  .info-box {
+    padding: 10px;
+    font-size: 14px;
+  }
 }
