@@ -94,3 +94,42 @@
   line-height: 1.7;
   font-size: 16px;
 }
+
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+  font-size: 1.8rem;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+
+  /* Mostra o ícone hambúrguer apenas no telemóvel */
+  .menu-toggle {
+    display: block;
+  }
+
+  /* Transforma a nav-links numa lista vertical escondida */
+  .nav-links {
+    display: none;
+    /* Escondido por padrão */
+    position: absolute;
+    top: 70px;
+    /* Ajuste conforme a altura da sua navbar */
+    right: 0;
+    width: 100%;
+    background: #0b0b1a;
+    /* Cor do fundo do seu site */
+    flex-direction: column;
+    padding: 20px;
+    border-bottom: 2px solid #7b2ff7;
+    z-index: 1000;
+    gap: 15px;
+    text-align: center;
+  }
+
+  /* Quando o JS adicionar a classe .active, o menu aparece */
+  .nav-links.active {
+    display: flex;
+  }
+}

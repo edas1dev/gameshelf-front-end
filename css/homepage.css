@@ -80,14 +80,34 @@
     padding-left: 15px;
 }
 
-.shelf-header h2 { font-size: 1.6rem; margin: 0; color: #fff; }
-.shelf-header p { margin: 5px 0 0 0; color: #aaa; font-size: 0.9rem; }
+.shelf-header h2 {
+    font-size: 1.6rem;
+    margin: 0;
+    color: #fff;
+}
+
+.shelf-header p {
+    margin: 5px 0 0 0;
+    color: #aaa;
+    font-size: 0.9rem;
+}
 
 /* Destaques */
-.highlight-gold .shelf-header { border-left-color: #ffcc00; }
-.highlight-gold .shelf-header h2 { color: #ffcc00; }
-.highlight-blue .shelf-header { border-left-color: #00d2ff; }
-.highlight-blue .shelf-header h2 { color: #00d2ff; }
+.highlight-gold .shelf-header {
+    border-left-color: #ffcc00;
+}
+
+.highlight-gold .shelf-header h2 {
+    color: #ffcc00;
+}
+
+.highlight-blue .shelf-header {
+    border-left-color: #00d2ff;
+}
+
+.highlight-blue .shelf-header h2 {
+    color: #00d2ff;
+}
 
 /* === LISTAS E GRIDS === */
 .games-row {
@@ -110,7 +130,7 @@
     border-radius: 12px;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -149,7 +169,8 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    align-items: center; /* centraliza conteúdo */
+    align-items: center;
+    /* centraliza conteúdo */
     text-align: center;
     justify-content: space-between;
 }
@@ -190,31 +211,80 @@
 }
 
 /* Scrollbar Custom */
-::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: #0b0b1a; }
-::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #7b2ff7; }
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0b0b1a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #7b2ff7;
+}
 
 /* Loader */
 .loader {
     margin: 40px auto;
-    border: 4px solid rgba(255,255,255,0.1);
+    border: 4px solid rgba(255, 255, 255, 0.1);
     border-top: 4px solid #7b2ff7;
     border-radius: 50%;
     width: 40px;
     height: 40px;
     animation: spin 1s linear infinite;
 }
+
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
-/* Responsividade */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 1.8rem;
+    color: #fff;
+}
+
 @media (max-width: 768px) {
-    .search-hero { padding: 40px 15px; }
-    .hero-content h1 { font-size: 1.6rem; }
-    .search-bar-large { flex-direction: column; }
-    #main-search-btn { width: 100%; padding: 12px; }
-    .games-grid-large { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+
+    /* Mostra o ícone hambúrguer apenas no telemóvel */
+    .menu-toggle {
+        display: block;
+    }
+
+    /* Transforma a nav-links numa lista vertical escondida */
+    .nav-links {
+        display: none;
+        /* Escondido por padrão */
+        position: absolute;
+        top: 70px;
+        /* Ajuste conforme a altura da sua navbar */
+        right: 0;
+        width: 100%;
+        background: #0b0b1a;
+        /* Cor do fundo do seu site */
+        flex-direction: column;
+        padding: 20px;
+        border-bottom: 2px solid #7b2ff7;
+        z-index: 1000;
+        gap: 15px;
+        text-align: center;
+    }
+
+    /* Quando o JS adicionar a classe .active, o menu aparece */
+    .nav-links.active {
+        display: flex;
+    }
 }

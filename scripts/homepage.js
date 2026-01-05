@@ -18,6 +18,15 @@ window.logout = logout;
 let isSearching = false;
 
 document.addEventListener("DOMContentLoaded", () => {
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        });
+    }
+    
     initHomepage();
 
     searchBtn.addEventListener('click', handleSearch);
@@ -36,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
             resetHomepage();
         }
     });
+
 });
 
 function initHomepage() {

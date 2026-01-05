@@ -9,14 +9,25 @@ const userNameTitle = document.getElementById('user-name-title');
 window.logout = logout;
 
 document.addEventListener("DOMContentLoaded", function () {
-    // 1. Verifica se o usuário está logado. Se não, redireciona.
+    // Lógica do Menu Mobile
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        });
+    }
+
+    if (!checkAuth()) return;
+    fetchUserInfo();
+    fetchUserReviews();
+    
     if (!checkAuth()) return;
 
-    // 2. Carrega as informações do usuário e as reviews
     fetchUserInfo();
     fetchUserReviews();
 
-    // 3. Adiciona listeners para atualizar e deletar
     if (updateForm) updateForm.addEventListener('submit', handleUpdateUser);
     if (deleteButton) deleteButton.addEventListener('click', handleDeleteUser);
 });
